@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import kotlin.random.Random
 
+//константа для ключа сохранения состояния
 private const val LAST_RANDOM_VALUE = "LAST_RANDOM_VALUE"
 class DiceFragment : Fragment() {
 
@@ -20,14 +21,12 @@ class DiceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dice, container, false)
         diceImageView = view.findViewById(R.id.dice_image_view)
         randomizeButton = view.findViewById(R.id.randomize_button)
 
-        if (savedInstanceState!=null){
-            rollDice(savedInstanceState.getInt(LAST_RANDOM_VALUE))
-        }
+        savedInstanceState?.let { randomValue = it.getInt(LAST_RANDOM_VALUE) }
+        rollDice(randomValue)
 
         randomizeButton.setOnClickListener {
             randomValue = Random.nextInt(1, 6)
@@ -37,6 +36,7 @@ class DiceFragment : Fragment() {
         return view
     }
 
+    //подкидывает кубик
     private fun rollDice(randomValue: Int) {
 
         diceImageView.setImageResource(
@@ -53,8 +53,9 @@ class DiceFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(LAST_RANDOM_VALUE, randomValue)
+
         super.onSaveInstanceState(outState)
+        outState.putInt(LAST_RANDOM_VALUE, randomValue)
     }
 
 }

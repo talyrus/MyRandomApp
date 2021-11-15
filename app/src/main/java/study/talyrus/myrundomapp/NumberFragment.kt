@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlin.random.Random
 
+//константа для ключа сохранения состояния
 private const val LAST_RANDOMIZED_VALUE = "LAST_RANDOMIZED_VALUE"
 
 class NumberFragment : Fragment() {
@@ -27,15 +28,12 @@ class NumberFragment : Fragment() {
         resultTextView = view.findViewById(R.id.result_text_view)
         randomizeButton = view.findViewById(R.id.randomize_button)
         //если состояние сохранено, то применить его значение к текстовому полю результата
-        if (savedInstanceState != null)
-            resultTextView.text = savedInstanceState.getInt(LAST_RANDOMIZED_VALUE).toString()
-        else
-        //если нет, то получить новое число
-            randomize()
+        randomValue = savedInstanceState?.getInt(LAST_RANDOMIZED_VALUE) ?: 0
+        resultTextView.text = randomValue.toString()
 
-        randomizeButton.setOnClickListener {
-            randomize()
-        }
+
+        //рандомить новое число при нажатии на кнопку
+        randomizeButton.setOnClickListener { randomize() }
 
         return view
     }

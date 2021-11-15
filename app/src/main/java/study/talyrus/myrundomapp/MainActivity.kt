@@ -22,9 +22,16 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private const val LAST_SELECTED_ITEM = "LAST_SELECTED_ITEM" // создаем константу для сохранения состояния activity/фрагмента
-class MainActivity : AppCompatActivity() {
+private val NUMBER_FRAGMENT = NumberFragment().javaClass.name
+private val DICE_FRAGMENT = DiceFragment().javaClass.name
 
+class MainActivity : AppCompatActivity() {
+    private var numberFragment = NumberFragment()
+    private var diceFragment = DiceFragment()
+
+    //ранняя инициализация нижней навигации
     private lateinit var bottomNavigationView:BottomNavigationView //создаем переменную
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +41,17 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item->
             var fragment:Fragment? = null
             when(item.itemId){ //определяем действия в зависимости от нажатия
-                R.id.number->{
-                    fragment = NumberFragment() // создаем соответствующие фрагменты
+                R.id.number -> {
+                    fragment =
+                        savedInstanceState?.let {
+                            supportFragmentManager.getFragment(it, NUMBER_FRAGMENT)
+                        } ?: numberFragment
                 }
-                R.id.dice->{
-                    fragment = DiceFragment()
+                R.id.dice -> {
+                    fragment =
+                        savedInstanceState?.let {
+                            supportFragmentManager.getFragment(it, DICE_FRAGMENT)
+                        } ?: diceFragment
                 }
                 R.id.coin->{
                     fragment = CoinFragment()
@@ -56,6 +69,10 @@ class MainActivity : AppCompatActivity() {
     // переопределим функцию сохранения состояния (восстановления) activity/фрагмента
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putInt(LAST_SELECTED_ITEM, bottomNavigationView.selectedItemId)
+
+        //сохраняем интсанцию конкретного фрагмента
+        val fragment = supportFragmentManager.fragments.last()
+        supportFragmentManager.putFragment(outState, fragment.javaClass.name, fragment)
         super.onSaveInstanceState(outState)
     }
 
