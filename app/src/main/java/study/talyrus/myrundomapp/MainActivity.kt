@@ -17,7 +17,6 @@ package study.talyrus.myrundomapp
 * */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -36,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_view) // инициализируем
         //подключаем слушатель
         bottomNavigationView.setOnItemSelectedListener { item->
@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
                             supportFragmentManager.getFragment(it, DICE_FRAGMENT)
                         } ?: diceFragment
                 }
-                R.id.coin->{
-                    fragment = CoinFragment()
+                R.id.about->{
+                    fragment = AboutFragment()
                 }
 
             }

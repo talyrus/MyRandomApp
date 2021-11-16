@@ -11,9 +11,9 @@
         android:title="@string/dice" />
 
     <item
-        android:id="@+id/coin"
-        android:icon="@drawable/coin_icon"
-        android:title="@string/coin" />
+        android:id="@+id/about"
+        android:icon="@drawable/about_icon"
+        android:title="@string/about" />
 
 
 </menu>

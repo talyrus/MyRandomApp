@@ -12,9 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- определим свою тему для всего текста приложения -->
-        <item name="android:textViewStyle">@style/Theme.MyRundomApp.TextVeiw</item>
+        <item name="android:textViewStyle">@style/Theme.MyRundomApp.TextView</item>
     </style>
-    <style name="Theme.MyRundomApp.TextVeiw" parent="Widget.MaterialComponents.TextView">
+    <style name="Theme.MyRundomApp.TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">20sp</item>
     </style>
 
