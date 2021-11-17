@@ -23,10 +23,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 private const val LAST_SELECTED_ITEM = "LAST_SELECTED_ITEM" // создаем константу для сохранения состояния activity/фрагмента
 private val NUMBER_FRAGMENT = NumberFragment().javaClass.name
 private val DICE_FRAGMENT = DiceFragment().javaClass.name
+private var COIN_FRAGMENT = CoinFragment().javaClass.name
 
 class MainActivity : AppCompatActivity() {
     private var numberFragment = NumberFragment()
     private var diceFragment = DiceFragment()
+    private var coinFragment = CoinFragment()
 
     //ранняя инициализация нижней навигации
     private lateinit var bottomNavigationView:BottomNavigationView //создаем переменную
@@ -52,6 +54,12 @@ class MainActivity : AppCompatActivity() {
                         savedInstanceState?.let {
                             supportFragmentManager.getFragment(it, DICE_FRAGMENT)
                         } ?: diceFragment
+                }
+                R.id.coin -> {
+                    fragment =
+                        savedInstanceState?.let {
+                            supportFragmentManager.getFragment(it, COIN_FRAGMENT)
+                        } ?: coinFragment
                 }
                 R.id.about->{
                     fragment = AboutFragment()

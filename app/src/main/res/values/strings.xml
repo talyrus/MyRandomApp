@@ -5,4 +5,9 @@
     <string name="random">Random</string>
     <string name="send">Благодарить...</string>
     <string name="about">Авторы</string>
+  <string name="coin">Монетка</string>
+  <string name="author">Авторы</string>
+  <string name="game_to_coin">Игра в монетку</string>
+  <string name="game_to_dice">Игра в кости</string>
+  <string name="game_to_number">Игра в числа</string>
 </resources>

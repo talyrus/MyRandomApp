@@ -9,6 +9,10 @@
         android:id="@+id/dice"
         android:icon="@drawable/dice_icon"
         android:title="@string/dice" />
+    <item
+      android:id="@+id/coin"
+      android:icon="@drawable/coin_icon"
+      android:title="@string/coin" />
 
     <item
         android:id="@+id/about"
